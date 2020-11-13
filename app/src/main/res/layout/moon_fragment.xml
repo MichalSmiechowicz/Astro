@@ -1,0 +1,90 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent">
+
+    <TextView
+        android:id="@+id/sunText"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Księżyc"
+        android:textSize="30sp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
+
+    <TextView
+        android:id="@+id/sunRiseText"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Wschód"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/sunText" />
+
+    <TextView
+        android:id="@+id/sunRiseTimeText"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Czas: "
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/sunRiseText" />
+
+    <TextView
+        android:id="@+id/sunRiseAzimuthText"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Azymut:"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/sunRiseTimeText" />
+
+    <TextView
+        android:id="@+id/sunSetText"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Zachód"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/sunRiseAzimuthText" />
+
+    <TextView
+        android:id="@+id/sunSetTimeText"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Czas:"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/sunSetText" />
+
+    <TextView
+        android:id="@+id/sunSetAzimuthText"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Azymut"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/sunSetTimeText" />
+
+    <TextView
+        android:id="@+id/timeOfCivilTwilightText"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Czas Zmierzchu Cywilnego:"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/sunSetAzimuthText" />
+
+    <TextView
+        android:id="@+id/timeOfCivilDawnTimeText"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Czas świtu Cywilnego"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/timeOfCivilTwilightText" />
+</androidx.constraintlayout.widget.ConstraintLayout>
