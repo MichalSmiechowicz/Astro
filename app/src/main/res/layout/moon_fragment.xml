@@ -7,7 +7,7 @@
     android:layout_height="match_parent">
 
     <TextView
-        android:id="@+id/sunText"
+        android:id="@+id/moonText"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:text="Księżyc"
@@ -17,74 +17,74 @@
         app:layout_constraintTop_toTopOf="parent" />
 
     <TextView
-        android:id="@+id/sunRiseText"
+        android:id="@+id/moonRiseText"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:text="Wschód"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/sunText" />
+        app:layout_constraintTop_toBottomOf="@+id/moonText" />
 
     <TextView
-        android:id="@+id/sunRiseTimeText"
+        android:id="@+id/moonRiseTimeText"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:text="Czas: "
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/sunRiseText" />
+        app:layout_constraintTop_toBottomOf="@+id/moonRiseText" />
 
     <TextView
-        android:id="@+id/sunRiseAzimuthText"
+        android:id="@+id/moonSetText"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="Azymut:"
+        android:text="Zachód:"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/sunRiseTimeText" />
+        app:layout_constraintTop_toBottomOf="@+id/moonRiseTimeText" />
 
     <TextView
-        android:id="@+id/sunSetText"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="Zachód"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/sunRiseAzimuthText" />
-
-    <TextView
-        android:id="@+id/sunSetTimeText"
+        android:id="@+id/moonSetTimeText"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:text="Czas:"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/sunSetText" />
+        app:layout_constraintTop_toBottomOf="@+id/moonSetText" />
 
     <TextView
-        android:id="@+id/sunSetAzimuthText"
+        android:id="@+id/newMoonTimeText"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="Azymut"
+        android:text="Nów:"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/sunSetTimeText" />
+        app:layout_constraintTop_toBottomOf="@+id/moonSetTimeText" />
 
     <TextView
-        android:id="@+id/timeOfCivilTwilightText"
+        android:id="@+id/fullMoonText"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="Czas Zmierzchu Cywilnego:"
+        android:text="Pełnia:"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/sunSetAzimuthText" />
+        app:layout_constraintTop_toBottomOf="@+id/newMoonTimeText" />
 
     <TextView
-        android:id="@+id/timeOfCivilDawnTimeText"
+        android:id="@+id/moonPhaseText"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="Czas świtu Cywilnego"
+        android:text="Faza księżyca (w procentach):"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/timeOfCivilTwilightText" />
+        app:layout_constraintTop_toBottomOf="@+id/fullMoonText" />
+
+    <TextView
+        android:id="@+id/dayOfTheSynodicMonth"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Dzień miesiąca synodycznego:"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/moonPhaseText" />
 </androidx.constraintlayout.widget.ConstraintLayout>

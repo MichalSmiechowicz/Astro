@@ -24,16 +24,21 @@ import java.util.Calendar;
 
 public class PhoneMainActivity extends FragmentActivity implements AdapterView.OnItemSelectedListener {
 
-    private TextView sunRiseTime;
-    private TextView sunRiseAzimuth;
-    private TextView sunSetTime;
-    private TextView sunSetAzimuth;
-    private TextView timeOfCivilianTwilight;
-    private TextView timeOfCivilianDawn;
     private static final int PAGE_NUMBER = 2;
     private ViewPager2 viewPager;
     private final GlobalVar globalVar = GlobalVar.getGlobalVarInstance();
-
+    private Calendar cal = Calendar.getInstance();
+    AstroDateTime dateTime = new AstroDateTime(
+            cal.get(Calendar.YEAR),
+            cal.get(Calendar.MONTH),
+            cal.get(Calendar.DAY_OF_MONTH),
+            cal.get(Calendar.HOUR),
+            cal.get(Calendar.MINUTE),
+            cal.get(Calendar.SECOND),
+            cal.get(Calendar.ZONE_OFFSET),
+            false);
+    AstroCalculator.Location location = new AstroCalculator.Location(globalVar.getLatitude(), globalVar.getLongitude());
+    AstroCalculator calculator = new AstroCalculator(dateTime, location);
 
     @Override
     public void onItemSelected(AdapterView<?> parent, View view, int position, long id) {
@@ -49,7 +54,6 @@ public class PhoneMainActivity extends FragmentActivity implements AdapterView.O
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_phone_main);
-
         viewPager = findViewById(R.id.pager);
         FragmentStateAdapter pagerAdapter = new ScreenSlidePagerAdapter(this);
         viewPager.setAdapter(pagerAdapter);
@@ -68,11 +72,15 @@ public class PhoneMainActivity extends FragmentActivity implements AdapterView.O
         confirmButton.setOnClickListener(OnClickListener -> {
             globalVar.setLongitude(Double.parseDouble(longitudeText.getText().toString()));
             globalVar.setLatitude(Double.parseDouble(latitudeText.getText().toString()));
-            calculateAstronomicalValuesAndUpdate();
+            if (viewPager.getCurrentItem() == 0){
+                calculateAstronomicalValuesForSunAndUpdate();
+            }else {
+                calculateAstronomicalValuesForMoonAndUpdate();
+            }
+
         });
 
-//        calculateAstronomicalValuesAndUpdate();
-        final Handler h = new Handler();
+        Handler h = new Handler();
         h.post(new Runnable() {
             @Override
             public void run() {
@@ -80,8 +88,20 @@ public class PhoneMainActivity extends FragmentActivity implements AdapterView.O
                 h.postDelayed(this, 1000);
             }
         });
+//        System.out.println("damn ");
+//
+//        Handler h2 = new Handler();
+//        h2.post(new Runnable() {
+//            @Override
+//            public void run() {
+//                calculateAstronomicalValuesForSunAndUpdate();
+//                h2.postDelayed(this, 10000);
+//            }
+//        });
 
     }
+
+
 
 
     @Override
@@ -113,36 +133,52 @@ public class PhoneMainActivity extends FragmentActivity implements AdapterView.O
         }
     }
 
-    public void calculateAstronomicalValuesAndUpdate() {
-        Calendar cal = Calendar.getInstance();
+    public void calculateAstronomicalValuesForSunAndUpdate() {
 
-        sunRiseTime = findViewById(R.id.sunRiseTimeText);
-        sunRiseAzimuth = findViewById(R.id.sunRiseAzimuthText);
-        sunSetTime = findViewById(R.id.sunSetTimeText);
-        sunSetAzimuth = findViewById(R.id.sunSetAzimuthText);
-        timeOfCivilianTwilight = findViewById(R.id.timeOfCivilTwilightText);
-        timeOfCivilianDawn = findViewById(R.id.timeOfCivilDawnTimeText);
+        TextView sunRiseTime = findViewById(R.id.sunRiseTimeText);
+        TextView sunRiseAzimuth = findViewById(R.id.sunRiseAzimuthText);
+        TextView sunSetTime = findViewById(R.id.sunSetTimeText);
+        TextView sunSetAzimuth = findViewById(R.id.sunSetAzimuthText);
+        TextView timeOfCivilianTwilight = findViewById(R.id.twilightTimeText);
+        TextView timeOfCivilianDawn = findViewById(R.id.dawnTimeText);
 
-        AstroDateTime dateTime = new AstroDateTime(
-                cal.get(Calendar.YEAR),
-                cal.get(Calendar.MONTH),
-                cal.get(Calendar.DAY_OF_MONTH),
-                cal.get(Calendar.HOUR),
-                cal.get(Calendar.MINUTE),
-                cal.get(Calendar.SECOND),
-                cal.get(Calendar.ZONE_OFFSET),
-                false);
-
-        AstroCalculator.Location location = new AstroCalculator.Location(globalVar.getLatitude(), globalVar.getLongitude());
-        AstroCalculator calculator = new AstroCalculator(dateTime, location);
-        calculator.getSunInfo();
         String temp = "Czas: " + calculator.getSunInfo().getSunrise().toString().substring(11,19);
         sunRiseTime.setText(temp);
         temp="Azymut: " + calculator.getSunInfo().getAzimuthRise();
         sunRiseAzimuth.setText(temp);
-        sunSetTime.setText("Czas: " + calculator.getSunInfo().getSunset());
-        sunSetAzimuth.setText("Azymut: " + calculator.getSunInfo().getAzimuthSet());
-        timeOfCivilianTwilight.setText("Czas Zmierzcu Cywilnego: " + calculator.getSunInfo().getTwilightEvening());
-        timeOfCivilianDawn.setText("Czas świtu Cywilnego: " + calculator.getSunInfo().getTwilightMorning());
+        temp = "Czas: " + calculator.getSunInfo().getSunset().toString().substring(11,19);
+        sunSetTime.setText(temp);
+        temp = "Azymut: " + calculator.getSunInfo().getAzimuthSet();
+        sunSetAzimuth.setText(temp);
+        temp = "Czas Zmierzcu Cywilnego: " + calculator.getSunInfo().getTwilightEvening().toString().substring(11,19);
+        timeOfCivilianTwilight.setText(temp);
+        temp = "Czas świtu Cywilnego: " + calculator.getSunInfo().getTwilightMorning().toString().substring(11,19);
+        timeOfCivilianDawn.setText(temp);
     }
+
+    private void calculateAstronomicalValuesForMoonAndUpdate() {
+
+        TextView moonRiseTime = findViewById(R.id.moonRiseTimeText);
+        TextView moonSetTime = findViewById(R.id.moonSetTimeText);
+        TextView newMoon = findViewById(R.id.newMoonTimeText);
+        TextView fullMoon = findViewById(R.id.fullMoonText);
+        TextView moonPhase = findViewById(R.id.moonPhaseText);
+        TextView dayOfTheSynodicMonth = findViewById(R.id.dayOfTheSynodicMonth);
+
+        String temp = "Czas: " + calculator.getMoonInfo().getMoonrise().toString().substring(11,19);
+        moonRiseTime.setText(temp);
+        temp="Czas: " + calculator.getMoonInfo().getMoonset().toString().substring(11,19);
+        moonSetTime.setText(temp);
+        temp = "Nów: " + calculator.getMoonInfo().getNextNewMoon();
+        newMoon.setText(temp);
+        temp = "Pełnia: " + calculator.getMoonInfo().getNextFullMoon();
+        fullMoon.setText(temp);
+        temp = "Faza księżyca (w procentach): " + calculator.getMoonInfo().getIllumination();
+        moonPhase.setText(temp);
+        temp = "Dzień miesiąca synodycznego: " + calculator.getMoonInfo().getAge();
+        dayOfTheSynodicMonth.setText(temp);
+
+
+    }
+
 }

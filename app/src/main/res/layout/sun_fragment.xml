@@ -73,7 +73,7 @@
         app:layout_constraintTop_toBottomOf="@+id/sunSetTimeText" />
 
     <TextView
-        android:id="@+id/timeOfCivilTwilightText"
+        android:id="@+id/twilightTimeText"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginTop="16dp"
@@ -83,12 +83,12 @@
         app:layout_constraintTop_toBottomOf="@+id/sunSetAzimuthText" />
 
     <TextView
-        android:id="@+id/timeOfCivilDawnTimeText"
+        android:id="@+id/dawnTimeText"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginTop="16dp"
         android:text="Czas świtu Cywilnego"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/timeOfCivilTwilightText" />
+        app:layout_constraintTop_toBottomOf="@+id/twilightTimeText" />
 </androidx.constraintlayout.widget.ConstraintLayout>
