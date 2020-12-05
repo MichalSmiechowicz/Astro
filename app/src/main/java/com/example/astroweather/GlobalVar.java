@@ -1,22 +1,34 @@
 package com.example.astroweather;
 
-import android.app.Application;
+
+import java.util.HashMap;
 
 public class GlobalVar   {
-    private static String refreshTime ="";
+    private static String refreshTime ="10 sec";
     private static double longitude =0 ;
     private static double latitude = 0;
     private static GlobalVar instance =  new GlobalVar();
-
-
+    private static HashMap<String,Integer> spinnerStringToTime = new HashMap<>();
+    static {
+        spinnerStringToTime.put("10 sec", 10);
+        spinnerStringToTime.put("15 min", 900);
+        spinnerStringToTime.put("30 min", 1800);
+        spinnerStringToTime.put("45 min", 2700);
+        spinnerStringToTime.put("1 h", 3600);
+    }
     private GlobalVar() {
+
+    }
+
+    public HashMap<String, Integer> getSpinnerStringToTime() {
+        return spinnerStringToTime;
     }
 
     public static GlobalVar getGlobalVarInstance(){
         return instance;
     }
 
-    public static String getRefreshTime() {
+    public  String getRefreshTime() {
         return refreshTime;
     }
 
