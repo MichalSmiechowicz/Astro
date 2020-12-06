@@ -74,11 +74,11 @@ public class MoonFragment extends Fragment {
             temp="Czas: " +  calculator.getMoonInfo().getMoonset().toString().substring(11,19);
         }
         moonSetTime.setText(temp);
-        temp = "Nów: " + calculator.getMoonInfo().getNextNewMoon();
+        temp = "Nów: " + calculator.getMoonInfo().getNextNewMoon().toString().substring(0,19);
         newMoon.setText(temp);
-        temp = "Pełnia: " + calculator.getMoonInfo().getNextFullMoon();
+        temp = "Pełnia: " + calculator.getMoonInfo().getNextFullMoon().toString().substring(0,19);
         fullMoon.setText(temp);
-        temp = "Faza księżyca (w procentach): " + Math.round(calculator.getMoonInfo().getIllumination()*100);
+        temp = "Faza księżyca : " +  Math.round(calculator.getMoonInfo().getIllumination()*100) + "%";
         moonPhase.setText(temp);
         temp = "Dzień miesiąca synodycznego: " + calculator.getMoonInfo().getAge();
         dayOfTheSynodicMonth.setText(temp);

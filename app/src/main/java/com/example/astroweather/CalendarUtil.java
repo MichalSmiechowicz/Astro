@@ -23,7 +23,8 @@ public class CalendarUtil {
                 cal.get(Calendar.SECOND),
                 cal.get(Calendar.ZONE_OFFSET),
                 false);
-        System.out.println(cal.get(Calendar.YEAR) +"  " + (cal.get(Calendar.MONTH )+1)  +"  " + cal.get(Calendar.DAY_OF_MONTH));
+
+        System.out.println(cal.get(Calendar.YEAR) +"  " + (cal.get(Calendar.MONTH )+1)  +"  " + cal.get(Calendar.DAY_OF_MONTH) + " " + cal.get(Calendar.ZONE_OFFSET));
         System.out.println("Lat:" + globalVar.getLatitude());
         System.out.println("Long:" + globalVar.getLongitude());
         AstroCalculator.Location location = new AstroCalculator.Location(globalVar.getLatitude(), globalVar.getLongitude());
@@ -36,8 +37,7 @@ public class CalendarUtil {
         int seconds = cal.get(Calendar.SECOND);
         Date d = new Date();
         CharSequence s  = DateFormat.format("EEEE, MMMM d, yyyy hh:mm:ss", d.getTime());
-//        System.out.println(s);
-//        System.out.println(String.format("%02d:%02d:%02d", hours, minutes, seconds));
+
         return String.format("%02d:%02d:%02d", hours, minutes, seconds);
     }
 }

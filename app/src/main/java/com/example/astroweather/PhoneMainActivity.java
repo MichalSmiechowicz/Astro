@@ -161,8 +161,8 @@ public class PhoneMainActivity extends FragmentActivity  {
         TextView timeOfCivilianDawn = findViewById(R.id.dawnTimeText);
 
         String temp = "Czas: " + calculator.getSunInfo().getSunrise().toString().substring(11,19);
-        i++;
-        sunRiseTime.setText(""+i);
+//        i++;
+        sunRiseTime.setText(temp);
         temp="Azymut: " + calculator.getSunInfo().getAzimuthRise();
         sunRiseAzimuth.setText(temp);
         temp = "Czas: " + calculator.getSunInfo().getSunset().toString().substring(11,19);
@@ -193,11 +193,11 @@ public class PhoneMainActivity extends FragmentActivity  {
             temp="Czas: " + calculator.getMoonInfo().getMoonset().toString().substring(11,19);
         }
         moonSetTime.setText(temp);
-        temp = "Nów: " + calculator.getMoonInfo().getNextNewMoon();
+        temp = "Nów: " + calculator.getMoonInfo().getNextNewMoon().toString().substring(0,19);
         newMoon.setText(temp);
-        temp = "Pełnia: " + calculator.getMoonInfo().getNextFullMoon();
+        temp = "Pełnia: " + calculator.getMoonInfo().getNextFullMoon().toString().substring(0,19);
         fullMoon.setText(temp);
-        temp = "Faza księżyca (w procentach): " +  Math.round(calculator.getMoonInfo().getIllumination()*100);
+        temp = "Faza księżyca : " +  Math.round(calculator.getMoonInfo().getIllumination()*100) + "%";
         moonPhase.setText(temp);
         temp = "Dzień miesiąca synodycznego: " + calculator.getMoonInfo().getAge();
         dayOfTheSynodicMonth.setText(temp);
